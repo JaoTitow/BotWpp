@@ -11,7 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from pathlib import Path
 from time import sleep
 
-#Instalando
+#Instalando drivers // Sem isso precisa fazer instalação manual
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)  
 
