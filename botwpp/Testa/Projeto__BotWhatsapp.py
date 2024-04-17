@@ -32,9 +32,10 @@ def abrindo_a_conversa(nome_contato):
     barra_pesquisa.send_keys(nome_contato) #Parte que pesquisa o nome do contato
 
     wait = WebDriverWait(driver, timeout=2) #Selecionando o contato desejado
+    
     span_buscando = f'//span[@title="{nome_contato}"]'
-    sleep(5)
     conversa_lateral = wait.until(EC.presence_of_element_located((By.XPATH, span_buscando)))
+    sleep(2)
     conversa_lateral.click()
 
 def fechando_a_conversa():
