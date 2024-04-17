@@ -18,8 +18,8 @@ driver = webdriver.Chrome(service=service)
 #Abrindo o Wpp
 def abrir_janela_whatsapp():
     driver.get("https://web.whatsapp.com/")
-    wait = WebDriverWait(driver, timeout=60)
-    barra_lateral = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="side"]')))
+    wait = WebDriverWait(driver, timeout=60) #Serve pra não bugar // sem ele o wpp simplesmente fecha e é isso
+    barra_lateral = wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="side"]'))) #Vai localizar a barra lateral das conversas
     driver.implicitly_wait(10)
 
 #Pesquisando o contato
@@ -34,11 +34,11 @@ def abrindo_a_conversa(nome_contato):
     wait = WebDriverWait(driver, timeout=2) #Selecionando o contato desejado
     
     span_buscando = f'//span[@title="{nome_contato}"]'
-    conversa_lateral = wait.until(EC.presence_of_element_located((By.XPATH, span_buscando)))
+    conversa_lateral = wait.until(EC.presence_of_element_located((By.XPATH, span_buscando))) #Procura a conversa na barra lateral
     sleep(2)
     conversa_lateral.click()
 
-def fechando_a_conversa():
+def fechando_a_conversa(): #Fecha conversa e limpa a barra de pesquisa
     barra_pesquisa = driver.find_element(By.XPATH, '//div[@title="Caixa de texto de pesquisa"]')
     barra_pesquisa.send_keys(Keys.CONTROL + 'a')
     barra_pesquisa.send_keys(Keys.DELETE)
