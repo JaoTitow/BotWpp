@@ -35,7 +35,7 @@ def abrindo_a_conversa(nome_contato):
     
     span_buscando = f'//span[@title="{nome_contato}"]'
     conversa_lateral = wait.until(EC.presence_of_element_located((By.XPATH, span_buscando))) #Procura a conversa na barra lateral
-    sleep(2)
+    driver.execute_script("arguments[0].scrollIntoView(true);", conversa_lateral) #Sem isso o script simplesmente crasha // serve pra "Scrollar" até o elemento caso ele esteja fora de vista
     conversa_lateral.click()
 
 def fechando_a_conversa(): #Fecha conversa e limpa a barra de pesquisa
